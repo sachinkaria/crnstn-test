@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, BrowserRouter } from 'react-router-dom'
 import Home from './pages/Home/index'
-import BeerItem from './components/BeerItem'
+import BeerItem from './pages/BeerItem'
 
 const router = (
     <BrowserRouter>

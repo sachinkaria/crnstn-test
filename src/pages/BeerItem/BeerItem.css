@@ -1,0 +1,66 @@
+:root {
+    --dark-grey: 80, 80, 80, 80;
+}
+
+.back-link-container {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.back-link {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: black;
+}
+
+.beer-title{
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: rgba(var(--dark-grey));
+
+}
+
+.beer-abv {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.beer-tagline {
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+    font-style: italic;
+    color: rgba(var(--dark-grey));
+}
+
+.beer-description {
+    font-size: 1em;
+    color: rgba(var(--dark-grey));
+}
+
+.beer-image {
+    height: 460px;
+    margin-bottom: 1em;
+}
+
+@media (min-width: 576px) {
+    .beer-title {
+        font-size: 3.5em;
+        margin-bottom: 1em;
+    }
+
+    .beer-abv {
+        font-size: 2.5em;
+        margin-bottom: 1em;
+    }
+
+    .beer-tagline {
+        font-size: 2em;
+        margin-bottom: 1em;
+    }
+
+    .beer-description {
+        font-size: 1.5em;
+    }
+}

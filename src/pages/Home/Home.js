@@ -4,6 +4,7 @@ import _ from 'lodash'
 import {Container, Row, Col, Spinner} from 'react-bootstrap'
 import './Home.css'
 import BeerListItem from '../../components/BeerListItem/index'
+import Loader from '../../components/Loader';
 
 class Home extends React.Component {
     constructor(props) {
@@ -39,7 +40,9 @@ class Home extends React.Component {
                 <Container>
                     <h1 className="heading">PUNK BEERS</h1>
                     {
-                        !this.state.loading &&
+                        this.state.loading ?
+                        <Loader message="Fetching dem beers!" />
+                            :
                         <Row>
                             <Col className="input-select-container">
                                 <label className="input-select-label" htmlFor="select-dropdown">Sort by</label>
@@ -48,16 +51,6 @@ class Home extends React.Component {
                                     <option value="name">Name</option>
                                     <option value="abv">ABV</option>
                                 </select>
-                            </Col>
-                        </Row>
-                    }
-                    {
-                        this.state.loading &&
-                        <Row>
-                            <Col className="spinner-container" xs="12">
-                                <Spinner animation="border" role="status"/>
-                                <br/>
-                                <span className="spinner-tag">Fetching dem beers!</span>
                             </Col>
                         </Row>
                     }
