@@ -14,8 +14,26 @@
     font-size: 2em;
 }
 
+.input-select-container {
+    text-align: right;
+    z-index: 2;
+}
+
+.input-select-label {
+    margin-right: 0.2em;
+}
+
+.beer-list {
+    margin-top: -56px;
+    z-index: 1;
+}
+
 @media (min-width: 576px) {
     .heading {
         text-align: left;
+    }
+
+    .beer-list {
+        margin-top: 0;
     }
 }
