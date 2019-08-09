@@ -6,6 +6,14 @@
     text-align: center;
 }
 
+.spinner-container {
+    text-align: center;
+}
+
+.spinner-tag {
+    font-size: 2em;
+}
+
 @media (min-width: 576px) {
     .heading {
         text-align: left;
