@@ -1,6 +1,8 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import axios from 'axios'
+import { Container, Row } from 'react-bootstrap'
 import './Home.css'
+import BeerListItem from '../../components/BeerListItem/index'
 
 class Home extends React.Component {
     constructor(props) {
@@ -10,18 +12,28 @@ class Home extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const url = 'https://api.punkapi.com/v2/beers';
+        axios.get(url).then(response => response.data)
+            .then((data) => {
+                this.setState({beers: data});
+                console.log(this.state.beers)
+            })
+    }
+
     render() {
         return(
             <div>
                 <Container>
                     <h1 className="heading">PUNK BEERS</h1>
                     <Row>
-                        <Col>
-                            Beer 1
-                        </Col>
-                        <Col>
-                            Beer 2
-                        </Col>
+                        {
+                            this.state.beers.map(beer => (
+                                <React.Fragment key={beer.id}>
+                                    <BeerListItem {...beer} />
+                                </React.Fragment>
+                            ))
+                        }
                     </Row>
                 </Container>
             </div>
