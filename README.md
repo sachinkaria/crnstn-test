@@ -16,5 +16,6 @@ To Do:
 - Add sorting Beer list to redux store or route parameters rather than just component state to cache the sorting
 - Ideally a TDD exercise with more time however would integrate testing to test redux actions and store as well as individual components
 - Implement Styled components library
+- Make images in Beer List links to their respective Beer Item page to improve ux
 
 Made with :heart: by Sachin Karia
