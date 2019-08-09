@@ -1,9 +1,11 @@
 import React from 'react'
-import axios from 'axios'
+import {connect} from "react-redux";
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Loader from '../../components/Loader';
 import './BeerItem.css'
+import {getBeer} from "../../actions/beers";
+
 
 class BeerItem extends React.Component {
     constructor(props) {
@@ -16,13 +18,12 @@ class BeerItem extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        const url = `https://api.punkapi.com/v2/beers/${id}`;
-        !this.state.beer &&
-            console.log('fetching beer');
-        axios.get(url).then(response => response.data)
-            .then((data) => {
-                this.setState({beer: data[0], loading: false});
-            })
+        this.props.getBeer(id);
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        const beer = nextProps.beer;
+        this.state.beer !== nextProps.beer && this.setState({ beer, loading: false });
     }
 
     render() {
@@ -67,4 +68,15 @@ class BeerItem extends React.Component {
 
 }
 
-export default BeerItem
+const mapStateToProps = (state) => {
+    return {
+        beer: state.beer
+    }
+};
+
+const mapDispatchToProps = { getBeer };
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BeerItem)

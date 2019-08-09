@@ -1,10 +1,11 @@
 import React from 'react'
-import axios from 'axios'
 import _ from 'lodash'
+import { connect } from 'react-redux'
 import {Container, Row, Col} from 'react-bootstrap'
 import './Home.css'
 import BeerListItem from '../../components/BeerListItem/index'
 import Loader from '../../components/Loader';
+import { getBeers } from '../../actions/beers/index'
 
 class Home extends React.Component {
     constructor(props) {
@@ -19,13 +20,15 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        const url = 'https://api.punkapi.com/v2/beers';
+        const beers = this.props.beers;
+        beers.length < 1 ? this.props.getBeers()
+            :
+        this.setState({ beers, loading: false });
+    }
 
-        this.state.beers.length < 1 &&
-        axios.get(url).then(response => response.data)
-            .then((data) => {
-                this.setState({beers: data, loading: false});
-            })
+    componentWillReceiveProps(nextProps, nextContext) {
+        const beers = nextProps.beers;
+        this.state.beers !== nextProps.beers && this.setState({ beers, loading: false });
     }
 
     handleChange(e) {
@@ -72,4 +75,15 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        beers: state.beers
+    }
+};
+
+const mapDispatchToProps = { getBeers };
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home)
