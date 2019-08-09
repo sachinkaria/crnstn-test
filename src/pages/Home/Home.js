@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import _ from 'lodash'
-import {Container, Row, Col, Spinner} from 'react-bootstrap'
+import {Container, Row, Col} from 'react-bootstrap'
 import './Home.css'
 import BeerListItem from '../../components/BeerListItem/index'
 import Loader from '../../components/Loader';
@@ -20,6 +20,8 @@ class Home extends React.Component {
 
     componentDidMount() {
         const url = 'https://api.punkapi.com/v2/beers';
+
+        this.state.beers.length < 1 &&
         axios.get(url).then(response => response.data)
             .then((data) => {
                 this.setState({beers: data, loading: false});
@@ -41,18 +43,19 @@ class Home extends React.Component {
                     <h1 className="heading">PUNK BEERS</h1>
                     {
                         this.state.loading ?
-                        <Loader message="Fetching dem beers!" />
+                            <Loader message="Fetching dem beers!"/>
                             :
-                        <Row>
-                            <Col className="input-select-container">
-                                <label className="input-select-label" htmlFor="select-dropdown">Sort by</label>
-                                <select name="select-dropdown" value={this.state.sortBy} onChange={this.handleChange}>
-                                    <option value="select" disabled>Select</option>
-                                    <option value="name">Name</option>
-                                    <option value="abv">ABV</option>
-                                </select>
-                            </Col>
-                        </Row>
+                            <Row>
+                                <Col className="input-select-container">
+                                    <label className="input-select-label" htmlFor="select-dropdown">Sort by</label>
+                                    <select name="select-dropdown" value={this.state.sortBy}
+                                            onChange={this.handleChange}>
+                                        <option value="select" disabled>Select</option>
+                                        <option value="name">Name</option>
+                                        <option value="abv">ABV</option>
+                                    </select>
+                                </Col>
+                            </Row>
                     }
                     <Row className="beer-list">
                         {

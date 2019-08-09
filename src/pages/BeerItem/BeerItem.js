@@ -9,21 +9,24 @@ class BeerItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            beer: null
+            beer: null,
+            loading: true
         }
     }
 
     componentDidMount() {
         const id = this.props.match.params.id;
         const url = `https://api.punkapi.com/v2/beers/${id}`;
+        !this.state.beer &&
+            console.log('fetching beer');
         axios.get(url).then(response => response.data)
             .then((data) => {
-                this.setState({beer: data[0]});
+                this.setState({beer: data[0], loading: false});
             })
     }
 
     render() {
-        const {beer} = this.state;
+        const { beer, loading } = this.state;
         return (
             <Container>
                 <Row className="back-link-container">
@@ -34,7 +37,7 @@ class BeerItem extends React.Component {
                     </Col>
                 </Row>
                 {
-                    beer ?
+                    !loading ?
                     <div>
                         <Row>
                             <Col>
