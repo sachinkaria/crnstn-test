@@ -1,0 +1,13 @@
+.heading {
+    font-size: 4em;
+    margin-bottom: 0.8em;
+    margin-top: 0.8em;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media (min-width: 576px) {
+    .heading {
+        text-align: left;
+    }
+}
