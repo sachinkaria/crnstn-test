@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './BeerListItem.css'
 
-function BeerListItem(props) {
+const BeerListItem = (props) => {
     return (
         <Col className="beer-list-item" xs="12" sm="6" md="4" lg="3">
             <div className="beer-list-item-details">
@@ -16,6 +16,6 @@ function BeerListItem(props) {
             </Link>
         </Col>
     )
-}
+};
 
 export default BeerListItem;
